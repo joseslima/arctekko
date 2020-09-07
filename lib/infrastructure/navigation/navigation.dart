@@ -1,3 +1,4 @@
+import 'package:arctekko/presentation/photo/selectioned_photo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,5 +31,9 @@ class Nav {
       page: () => EnvironmentsBadge(child: LoginScreen()),
       binding: LoginControllerBinding(),
     ),
+    GetPage(
+        name: Routes.PHOTO_GRID,
+        page: () => EnvironmentsBadge(child: PhotoGridScreen()),
+        binding: PhotoGridControllerBinding()),
   ];
 }
