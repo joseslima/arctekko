@@ -11,7 +11,7 @@ class UserDomainRepository {
 
   Future<List<UserData>> getUsers() async {
     try {
-      return await this._userService.geUsers();
+      return await this._userService.getUsers();
     } catch (e) {
       throw e;
     }

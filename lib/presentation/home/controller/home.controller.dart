@@ -16,6 +16,12 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
+    var a = await _postDomainService.getPosts();
+
     super.onInit();
   }
+
+  final _test = 'beleza'.obs;
+
+  String get test => _test.value;
 }

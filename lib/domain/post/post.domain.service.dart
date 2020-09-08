@@ -3,6 +3,8 @@ import 'package:arctekko/domain/post/post.domain.repository.dart';
 import 'package:arctekko/infrastructure/dal/services/photo/dto/photo_data.dart';
 import 'package:arctekko/infrastructure/dal/services/post/dto/post_data.dart';
 
+import 'models/post.model.dart';
+
 class PostDomainService {
   PostDomainRepository _postDomainRepository;
 
@@ -10,9 +12,9 @@ class PostDomainService {
     _postDomainRepository = postDomainRepository;
   }
 
-  Future<List<PostData>> getPosts() async {
+  Future<List<Post>> getPosts() async {
     try {
-      return _postDomainRepository.getPosts();
+      return await _postDomainRepository.getPosts();
     } catch (e) {
       throw e;
     }

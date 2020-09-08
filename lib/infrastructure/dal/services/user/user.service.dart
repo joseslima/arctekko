@@ -10,7 +10,7 @@ abstract class UserService {
   factory UserService(Dio dio) = _UserService;
 
   @GET('/users')
-  Future<List<UserData>> geUsers();
+  Future<List<UserData>> getUsers();
 
   @GET("/users/{id}")
   Future<UserData> getUser(@Path("id") String id);

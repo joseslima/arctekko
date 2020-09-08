@@ -11,7 +11,11 @@ class HomeScreen extends GetView<HomeController> {
           title: Text("Selected"),
         ),
         body: SafeArea(
-          child: Text("Ola"),
+          child: GetX<HomeController>(
+            builder: (controller) {
+              return Text(controller.test);
+            },
+          ),
         ));
   }
 }

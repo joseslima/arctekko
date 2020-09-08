@@ -16,7 +16,7 @@ class _UserService implements UserService {
   String baseUrl;
 
   @override
-  geUsers() async {
+  getUsers() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
