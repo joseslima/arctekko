@@ -10,8 +10,9 @@ class User {
   String email;
   String phone;
   String website;
+  String username;
 
-  User({this.id, this.name, this.email, this.phone, this.website});
+  User({this.id, this.name, this.email, this.phone, this.website, this.username });
 
   factory User.fromUserData(UserData userData) {
     return User(
@@ -19,7 +20,8 @@ class User {
       email: userData.email,
       name: userData.name,
       phone: userData.phone,
-      website: userData.website
+      website: userData.website,
+      username: userData.username,
     );
   }
 
