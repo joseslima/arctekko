@@ -68,18 +68,21 @@ class HomeScreen extends GetView<HomeController> {
         style: TextStyle(color: Colors.black87, fontSize: 15));
     return Padding(
         padding: EdgeInsets.only(bottom: 10),
-        child: Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: Colors.black12)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: EdgeInsets.only(bottom: 5), child: userNameWidget),
-              titleWidget
-            ],
+        child: InkWell(
+          onTap: () => { controller.goToPostPage(post)},
+          child: Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black12)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                    padding: EdgeInsets.only(bottom: 5), child: userNameWidget),
+                titleWidget
+              ],
+            ),
           ),
         ));
   }
