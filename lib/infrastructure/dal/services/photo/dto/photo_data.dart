@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'get_photos.response.g.dart';
+part 'photo_data.g.dart';
 
 
 @JsonSerializable()

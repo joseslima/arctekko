@@ -1,5 +1,5 @@
 import 'package:arctekko/domain/photo/photo.domain.service.dart';
-import 'package:arctekko/infrastructure/dal/services/photo/dto/get_photos.response.dart';
+import 'package:arctekko/infrastructure/dal/services/photo/dto/photo_data.dart';
 import 'package:arctekko/presentation/photo/selectioned_photo.dart';
 import 'package:get/get.dart';
 

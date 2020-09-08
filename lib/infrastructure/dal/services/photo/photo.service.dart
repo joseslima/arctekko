@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import 'dto/get_photos.response.dart';
+import 'dto/photo_data.dart';
 
 part 'photo.service.g.dart';
 

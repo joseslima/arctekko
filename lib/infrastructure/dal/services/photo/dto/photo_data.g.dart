@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_photos.response.dart';
+part of 'photo_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

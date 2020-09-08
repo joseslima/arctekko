@@ -1,5 +1,5 @@
 import 'package:arctekko/domain/photo/photo.domain.respository.dart';
-import 'package:arctekko/infrastructure/dal/services/photo/dto/get_photos.response.dart';
+import 'package:arctekko/infrastructure/dal/services/photo/dto/photo_data.dart';
 
 class PhotoDomainService {
   PhotoDomainRepository _photoDomainRepository;

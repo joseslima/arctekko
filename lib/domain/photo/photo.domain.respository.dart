@@ -1,4 +1,4 @@
-import 'package:arctekko/infrastructure/dal/services/photo/dto/get_photos.response.dart';
+import 'package:arctekko/infrastructure/dal/services/photo/dto/photo_data.dart';
 import 'package:arctekko/infrastructure/dal/services/photo/photo.service.dart';
 import 'package:flutter/foundation.dart';
 
