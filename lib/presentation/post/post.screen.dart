@@ -5,64 +5,116 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'controllers/comment.controller.dart';
+
 class PostScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Container(
-        padding: EdgeInsets.all(15),
-        child: SingleChildScrollView(
+      body: SafeArea(
+        child: Container(
+            padding: EdgeInsets.all(15),
             child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-              Padding(
-                  padding: EdgeInsets.only(bottom: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Color.fromRGBO(45, 136, 255, 3),
-                          size: 20,
-                          semanticLabel:
-                              'Text to announce in accessibility modes',
-                        ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text("Post",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w500)),
-                    ],
-                  )),
-              GetX<HomeController>(
-                builder: (controller) {
-                  var post = controller.selectedPost;
-                  var user = post.user;
+                  GetX<HomeController>(builder: (controller) {
+                    var post = controller.selectedPost;
+                    var user = post.user;
 
-                  var sizedBox = SizedBox(
-                    height: 5,
-                  );
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      userInfoWidget(user, sizedBox),
-                      postWidget(post)
-                    ],
-                  );
-                },
-              )
-            ])),
+                    var sizedBox = SizedBox(
+                      height: 5,
+                    );
+                    return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Get.back();
+                                    },
+                                    child: Icon(
+                                      Icons.arrow_back,
+                                      color: Color.fromRGBO(45, 136, 255, 3),
+                                      size: 20,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  Text("Post",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500)),
+                                ],
+                              )),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              userInfoWidget(user, sizedBox),
+                              postWidget(post),
+                              GetX<CommentController>(builder: (controller) {
+                                controller.getCommentsWherePostId(post.id);
+
+                                return Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.chat_bubble_outline,
+                                          color: Colors.black45,
+                                          size: 20,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Comentários:",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black45),
+                                        ),
+                                      ],
+                                    ),
+                                    Container(
+                                      child: controller.loadComments
+                                          ? ListView.builder(
+                                              itemCount:
+                                                  controller.comments.length,
+                                              itemBuilder: (context, index) {
+                                                return ListTile(
+                                                  title: Text(
+                                                      "${controller.comments[index].name}:"),
+                                                  subtitle: Text(controller
+                                                      .comments[index].body),
+                                                );
+                                              })
+                                          : Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
+                                    ),
+                                  ],
+                                );
+                              })
+                            ],
+                          )
+                        ]);
+                  })
+                ])),
       ),
-    ));
+    );
   }
 
   Padding postWidget(Post post) {

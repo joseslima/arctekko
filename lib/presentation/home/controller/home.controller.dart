@@ -51,7 +51,7 @@ class HomeController extends GetxController {
 
   goToPostPage(Post post) {
     selectedPost = post;
-    Get.to(PostScreen());
+    Get.toNamed('post');
   }
 
   Post getPostAt(int index) {

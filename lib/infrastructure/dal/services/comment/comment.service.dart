@@ -11,5 +11,7 @@ abstract class CommentService {
   factory CommentService(Dio dio) = _CommentService;
 
   @GET('/comments')
-  Future<List<CommentData>> getComments();
+  Future<List<CommentData>> getComments(
+    @Query("postId") String postId,
+  );
 }

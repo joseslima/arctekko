@@ -6,4 +6,5 @@ class Routes {
   static const LOGIN = 'login';
   static const PHOTO_GRID = 'photo_grid';
   static const HOME = 'home';
+  static const POST = 'post';
 }

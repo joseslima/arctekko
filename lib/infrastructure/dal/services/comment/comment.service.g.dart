@@ -16,9 +16,10 @@ class _CommentService implements CommentService {
   String baseUrl;
 
   @override
-  getComments() async {
+  getComments(postId) async {
+    ArgumentError.checkNotNull(postId, 'postId');
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'postId': postId};
     final _data = <String, dynamic>{};
     final Response<List<dynamic>> _result = await _dio.request('/comments',
         queryParameters: queryParameters,
