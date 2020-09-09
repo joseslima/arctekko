@@ -14,107 +14,111 @@ class PostScreen extends GetView<HomeController> {
       body: SafeArea(
         child: Container(
             padding: EdgeInsets.all(15),
-            child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GetX<HomeController>(builder: (controller) {
-                    var post = controller.selectedPost;
-                    var user = post.user;
+            child: SingleChildScrollView(
+              child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    GetX<HomeController>(builder: (controller) {
+                      var post = controller.selectedPost;
+                      var user = post.user;
 
-                    var sizedBox = SizedBox(
-                      height: 5,
-                    );
-                    return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                              padding: EdgeInsets.only(bottom: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Get.back();
-                                    },
-                                    child: Icon(
-                                      Icons.arrow_back,
-                                      color: Color.fromRGBO(45, 136, 255, 3),
-                                      size: 20,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 30,
-                                  ),
-                                  Text("Post",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500)),
-                                ],
-                              )),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              userInfoWidget(user, sizedBox),
-                              postWidget(post),
-                              GetX<CommentController>(builder: (controller) {
-                                controller.getCommentsWherePostId(post.id);
-
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                      var sizedBox = SizedBox(
+                        height: 5,
+                      );
+                      return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          Icons.chat_bubble_outline,
-                                          color: Colors.black45,
-                                          size: 20,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Comentários:",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.black45),
-                                        ),
-                                      ],
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: Icon(
+                                        Icons.arrow_back,
+                                        color: Color.fromRGBO(45, 136, 255, 3),
+                                        size: 20,
+                                      ),
                                     ),
-                                    Container(
-                                      child: controller.loadComments
-                                          ? ListView.builder(
-                                              itemCount:
-                                                  controller.comments.length,
-                                              itemBuilder: (context, index) {
-                                                return ListTile(
-                                                  title: Text(
-                                                      "${controller.comments[index].name}:"),
-                                                  subtitle: Text(controller
-                                                      .comments[index].body),
-                                                );
-                                              })
-                                          : Center(
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            ),
+                                    SizedBox(
+                                      width: 30,
                                     ),
+                                    Text("Post",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500)),
                                   ],
-                                );
-                              })
-                            ],
-                          )
-                        ]);
-                  })
-                ])),
+                                )),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                userInfoWidget(user, sizedBox),
+                                postWidget(post),
+                                GetX<CommentController>(builder: (controller) {
+                                  controller.getCommentsWherePostId(post.id);
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Icon(
+                                            Icons.chat_bubble_outline,
+                                            color: Color.fromRGBO(45, 136, 255, 3),
+                                            size: 20,
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            "Comentários:",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.black45),
+                                          ),
+                                        ],
+                                      ),
+                                      commentsList(controller)
+                                    ],
+                                  );
+                                })
+                              ],
+                            )
+                          ]);
+                    })
+                  ]),
+            )),
       ),
     );
+  }
+
+  Container commentsList(CommentController controller) {
+    return Container(
+        padding: EdgeInsets.only(top: 10),
+        child: controller.loadComments
+            ? ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: controller.comments.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text("${controller.comments[index].name}:"),
+                    subtitle: Text(controller.comments[index].body),
+                  );
+                })
+            : Center(
+                            child: CircularProgressIndicator(),
+                          ));
   }
 
   Padding postWidget(Post post) {
