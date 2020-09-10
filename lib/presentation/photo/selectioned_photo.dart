@@ -11,7 +11,6 @@ class SelectionedPhotoScreen extends GetView<PhotoGridController> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Selected"),
-          
         ),
         body: SafeArea(
           child: GetX<PhotoGridController>(

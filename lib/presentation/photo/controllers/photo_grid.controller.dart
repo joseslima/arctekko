@@ -19,7 +19,6 @@ class PhotoGridController extends GetxController {
   get selectedPhotoIndex => _selectedPhotoIndex.value;
 
   int get photoListLength => _photoList.value.length;
-  
 
   set selectedPhoto(int index) => _selectedPhotoIndex.value = index;
 

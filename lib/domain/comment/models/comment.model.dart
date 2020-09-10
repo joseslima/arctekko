@@ -16,11 +16,10 @@ class Comment {
 
   factory Comment.fromPostData(CommentData commentData) {
     return Comment(
-      id: commentData.id,
-      body: commentData.body,
-      email: commentData.email,
-      name: commentData.name
-    );
+        id: commentData.id,
+        body: commentData.body,
+        email: commentData.email,
+        name: commentData.name);
   }
 
   factory Comment.fromJson(Map<String, dynamic> json) =>

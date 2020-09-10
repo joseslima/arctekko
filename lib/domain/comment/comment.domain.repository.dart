@@ -12,7 +12,8 @@ class CommentDomainRepository {
 
   Future<List<Comment>> getCommentsWherePostId(int postId) async {
     try {
-      var commentDataList = await this._commentService.getComments(postId.toString());
+      var commentDataList =
+          await this._commentService.getComments(postId.toString());
 
       var commentList =
           await Future.wait(commentDataList.map((commentData) async {

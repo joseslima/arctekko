@@ -5,7 +5,6 @@ import 'dto/photo_data.dart';
 
 part 'photo.service.g.dart';
 
-
 @RestApi()
 abstract class PhotoService {
   factory PhotoService(Dio dio) = _PhotoService;

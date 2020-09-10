@@ -42,12 +42,10 @@ class Nav {
     GetPage(
         name: Routes.HOME,
         page: () => EnvironmentsBadge(child: HomeScreen()),
-        binding: HomeControllerBinding()
-    ),
+        binding: HomeControllerBinding()),
     GetPage(
         name: Routes.POST,
         page: () => EnvironmentsBadge(child: PostScreen()),
-        binding: PostControllerBinding()
-    )
+        binding: PostControllerBinding())
   ];
 }

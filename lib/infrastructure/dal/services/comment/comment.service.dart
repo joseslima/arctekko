@@ -5,7 +5,6 @@ import 'dto/comment_data.dart';
 
 part 'comment.service.g.dart';
 
-
 @RestApi()
 abstract class CommentService {
   factory CommentService(Dio dio) = _CommentService;

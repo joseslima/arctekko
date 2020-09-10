@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'photo_data.g.dart';
 
-
 @JsonSerializable()
 class PhotoData {
   int id;

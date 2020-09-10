@@ -11,7 +11,13 @@ class UserData {
   String website;
   String username;
 
-  UserData({this.id, this.name, this.email, this.phone, this.website, this.username});
+  UserData(
+      {this.id,
+      this.name,
+      this.email,
+      this.phone,
+      this.website,
+      this.username});
 
   factory UserData.fromJson(Map<String, dynamic> json) =>
       _$UserDataFromJson(json);

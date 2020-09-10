@@ -12,7 +12,13 @@ class User {
   String website;
   String username;
 
-  User({this.id, this.name, this.email, this.phone, this.website, this.username });
+  User(
+      {this.id,
+      this.name,
+      this.email,
+      this.phone,
+      this.website,
+      this.username});
 
   factory User.fromUserData(UserData userData) {
     return User(
@@ -25,8 +31,7 @@ class User {
     );
   }
 
-  factory User.fromJson(Map<String, dynamic> json) =>
-      _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }
